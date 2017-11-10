@@ -1,72 +1,50 @@
-// 自定义的prototype属性
-require('../prototype/isEmpty.prototype');
-
 // 正则表达式
 const regExpStr   = {
     typeStr: require('./regExp/typeStr.regExp'),
+    timeStr: require('./regExp/timeStr.regExp'),
+    dateStr: require('./regExp/dateStr.regExp'),
 };
 exports.regExpStr = regExpStr;
 
+const getDateStr   = require('./mixins/getDateStr');
+exports.getDateStr = getDateStr;
+
+const filters   = require('./mixins/filters');
+exports.filters = filters;
+
 // 类型判定
 // 基于 Object.prototype.toString.apply 的类型判定
-const _typeof   = require('./mixins/typeof');
+const _typeof   = require('./mixins/_typeof');
 exports._typeof = _typeof;
 
-function isNull(inputValue) {
-    return _typeof(inputValue) === 'null';
-}
+const isType = require('./mixins/isType');
+exports.isType = isType;
 
-exports.isNull = isNull;
+let isNull     = isType.isNull;
+exports.isNull = isType.isNull;
 
-function isUndefined(inputValue) {
-    return _typeof(inputValue) === 'undefined';
-}
+let isUndefined     = isType.isUndefined;
+exports.isUndefined = isType.isUndefined;
 
-exports.isUndefined = isUndefined;
+let isString     = isType.isString;
+exports.isString = isType.isString;
 
-function isString(inputValue) {
-    return _typeof(inputValue) === 'string';
-}
+let isNumber     = isType.isNumber;
+exports.isNumber = isType.isNumber;
 
-exports.isString = isString;
+let isBoolean     = isType.isBoolean;
+exports.isBoolean = isType.isBoolean;
 
-function isNumber(inputValue) {
-    return _typeof(inputValue) === 'number';
-}
+let isArray     = isType.isArray;
+exports.isArray = isType.isArray;
 
-exports.isNumber = isNumber;
+let isFunction     = isType.isFunction;
+exports.isFunction = isType.isFunction;
 
-function isBoolean(inputValue) {
-    return _typeof(inputValue) === 'boolean';
-}
+let isDate     = isType.isDate;
+exports.isDate = isType.isDate;
 
-exports.isBoolean = isBoolean;
-
-function isArray(inputValue) {
-    return _typeof(inputValue) === 'array';
-}
-
-exports.isArray = isArray;
-
-function isFunction(inputValue) {
-    return _typeof(inputValue) === 'function';
-}
-
-exports.isFunction = isFunction;
-
-function isEmpty(inputValue) {
-    // null 和 undefined 类型时
-    if (isNull(inputValue) || isUndefined(inputValue)) {
-        return true;
-    }
-    if (isFunction(inputValue)) {
-        return false;
-    }
-    // 其他类型时
-    return inputValue.isEmpty();
-}
-
+let isEmpty = require('./mixins/isEmpty');
 exports.isEmpty = isEmpty;
-
 
 
