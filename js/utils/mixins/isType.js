@@ -36,6 +36,13 @@ function isArray(inputValue) {
 
 exports.isArray = isArray;
 
+
+function isObject(inputValue) {
+    return _typeof(inputValue) === 'object';
+}
+
+exports.isObject = isObject;
+
 function isFunction(inputValue) {
     return _typeof(inputValue) === 'function';
 }

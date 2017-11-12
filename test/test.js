@@ -29,8 +29,188 @@ describe('测试 ## js/utils/mixins/ ##', function() {
         const time   = '2017-11-06 10:23:35';
         expect(getDateStr(new Date(time))).to.be.equal('2017-11-06 10:23:35');
     });
+    it('测试 ## isEmpty.js ##', function() {
+        const isEmpty = utils.isEmpty;
+        expect(isEmpty('')).to.be.equal(true);
+        expect(isEmpty(' ')).to.be.equal(true);
+        expect(isEmpty('123')).to.be.equal(false);
+        expect(isEmpty(123)).to.be.equal(false);
+        expect(isEmpty(0)).to.be.equal(false);
+        expect(isEmpty(undefined)).to.be.equal(true);
+        expect(isEmpty(null)).to.be.equal(true);
+        expect(isEmpty(false)).to.be.equal(false);
+        expect(isEmpty(true)).to.be.equal(false);
+        expect(isEmpty([])).to.be.equal(true);
+        expect(isEmpty([1,2])).to.be.equal(false);
+        expect(isEmpty({a:1})).to.be.equal(false);
+        expect(isEmpty(function(){})).to.be.equal(false);
+        expect(isEmpty(new Date())).to.be.equal(false);
+    });
+    it('测试 ## whetherValueTypeInTypesArray.js ##', function() {
+        const whetherValueTypeInTypesArray = utils.whetherValueTypeInTypesArray;
+        expect(whetherValueTypeInTypesArray(134, ['number', 'string'])).to.be.equal(true);
+        expect(whetherValueTypeInTypesArray('', ['number', 'string'])).to.be.equal(true);
+        expect(whetherValueTypeInTypesArray(undefined, ['number', 'string'])).to.be.equal(false);
+        expect(whetherValueTypeInTypesArray(null, ['number', 'string'])).to.be.equal(false);
+        expect(whetherValueTypeInTypesArray(undefined, ['undefined', 'string'])).to.be.equal(true);
+        expect(whetherValueTypeInTypesArray(null, ['undefined', 'string'])).to.be.equal(false);
+    });
 });
 
+describe('测试 ## js/utils/mixins/isType.js ##', function() {
+    it('测试方法 ## isNumber ##', function() {
+        expect(utils.isNumber(123)).to.be.equal(true);
+        expect(utils.isNumber(0)).to.be.equal(true);
+        expect(utils.isNumber(true)).to.be.equal(false);
+        expect(utils.isNumber(false)).to.be.equal(false);
+        expect(utils.isNumber(null)).to.be.equal(false);
+        expect(utils.isNumber('')).to.be.equal(false);
+        expect(utils.isNumber(' ')).to.be.equal(false);
+        expect(utils.isNumber('123')).to.be.equal(false);
+        expect(utils.isNumber(undefined)).to.be.equal(false);
+        expect(utils.isNumber([])).to.be.equal(false);
+        expect(utils.isNumber([1,2])).to.be.equal(false);
+        expect(utils.isNumber({a:1})).to.be.equal(false);
+        expect(utils.isNumber(function(){})).to.be.equal(false);
+        expect(utils.isNumber(new Date())).to.be.equal(false);
+    });
+
+    it('测试方法 ## isUndefined ##', function() {
+        expect(utils.isUndefined(undefined)).to.be.equal(true);
+        expect(utils.isUndefined(null)).to.be.equal(false);
+        expect(utils.isUndefined('')).to.be.equal(false);
+        expect(utils.isUndefined(' ')).to.be.equal(false);
+        expect(utils.isUndefined('123')).to.be.equal(false);
+        expect(utils.isUndefined(123)).to.be.equal(false);
+        expect(utils.isUndefined(true)).to.be.equal(false);
+        expect(utils.isUndefined(false)).to.be.equal(false);
+        expect(utils.isUndefined(0)).to.be.equal(false);
+        expect(utils.isUndefined([])).to.be.equal(false);
+        expect(utils.isUndefined([1,2])).to.be.equal(false);
+        expect(utils.isUndefined({a:1})).to.be.equal(false);
+        expect(utils.isUndefined(function(){})).to.be.equal(false);
+        expect(utils.isUndefined(new Date())).to.be.equal(false);
+    });
+
+    it('测试方法 ## isString ##', function() {
+        expect(utils.isString('')).to.be.equal(true);
+        expect(utils.isString(' ')).to.be.equal(true);
+        expect(utils.isString('123')).to.be.equal(true);
+        expect(utils.isString(true)).to.be.equal(false);
+        expect(utils.isString(false)).to.be.equal(false);
+        expect(utils.isString(null)).to.be.equal(false);
+        expect(utils.isString(123)).to.be.equal(false);
+        expect(utils.isString(0)).to.be.equal(false);
+        expect(utils.isString(undefined)).to.be.equal(false);
+        expect(utils.isString([])).to.be.equal(false);
+        expect(utils.isString([1,2])).to.be.equal(false);
+        expect(utils.isString({a:1})).to.be.equal(false);
+        expect(utils.isString(function(){})).to.be.equal(false);
+        expect(utils.isString(new Date())).to.be.equal(false);
+    });
+
+    it('测试方法 ## isNull ##', function() {
+        expect(utils.isNull(null)).to.be.equal(true);
+        expect(utils.isNull('')).to.be.equal(false);
+        expect(utils.isNull(' ')).to.be.equal(false);
+        expect(utils.isNull('123')).to.be.equal(false);
+        expect(utils.isNull(true)).to.be.equal(false);
+        expect(utils.isNull(false)).to.be.equal(false);
+        expect(utils.isNull(123)).to.be.equal(false);
+        expect(utils.isNull(0)).to.be.equal(false);
+        expect(utils.isNull(undefined)).to.be.equal(false);
+        expect(utils.isNull([])).to.be.equal(false);
+        expect(utils.isNull([1,2])).to.be.equal(false);
+        expect(utils.isNull({a:1})).to.be.equal(false);
+        expect(utils.isNull(function(){})).to.be.equal(false);
+        expect(utils.isNull(new Date())).to.be.equal(false);
+    });
+
+    it('测试方法 ## isArray ##', function() {
+        expect(utils.isArray([])).to.be.equal(true);
+        expect(utils.isArray([1,2])).to.be.equal(true);
+        expect(utils.isArray(null)).to.be.equal(false);
+        expect(utils.isArray(true)).to.be.equal(false);
+        expect(utils.isArray(false)).to.be.equal(false);
+        expect(utils.isArray('')).to.be.equal(false);
+        expect(utils.isArray(' ')).to.be.equal(false);
+        expect(utils.isArray('123')).to.be.equal(false);
+        expect(utils.isArray(123)).to.be.equal(false);
+        expect(utils.isArray(0)).to.be.equal(false);
+        expect(utils.isArray(undefined)).to.be.equal(false);
+        expect(utils.isArray({a:1})).to.be.equal(false);
+        expect(utils.isArray(function(){})).to.be.equal(false);
+        expect(utils.isArray(new Date())).to.be.equal(false);
+    });
+
+    it('测试方法 ## isObject ##', function() {
+        expect(utils.isObject({a:1})).to.be.equal(true);
+        expect(utils.isObject(null)).to.be.equal(false);
+        expect(utils.isObject(true)).to.be.equal(false);
+        expect(utils.isObject(false)).to.be.equal(false);
+        expect(utils.isObject('')).to.be.equal(false);
+        expect(utils.isObject(' ')).to.be.equal(false);
+        expect(utils.isObject('123')).to.be.equal(false);
+        expect(utils.isObject(123)).to.be.equal(false);
+        expect(utils.isObject(0)).to.be.equal(false);
+        expect(utils.isObject(undefined)).to.be.equal(false);
+        expect(utils.isObject([])).to.be.equal(false);
+        expect(utils.isObject([1,2])).to.be.equal(false);
+        expect(utils.isObject(function(){})).to.be.equal(false);
+        expect(utils.isObject(new Date())).to.be.equal(false);
+    });
+
+    it('测试方法 ## isFunction ##', function() {
+        expect(utils.isFunction(function(){})).to.be.equal(true);
+        expect(utils.isFunction({a:1})).to.be.equal(false);
+        expect(utils.isFunction(null)).to.be.equal(false);
+        expect(utils.isFunction(true)).to.be.equal(false);
+        expect(utils.isFunction(false)).to.be.equal(false);
+        expect(utils.isFunction('')).to.be.equal(false);
+        expect(utils.isFunction(' ')).to.be.equal(false);
+        expect(utils.isFunction('123')).to.be.equal(false);
+        expect(utils.isFunction(123)).to.be.equal(false);
+        expect(utils.isFunction(0)).to.be.equal(false);
+        expect(utils.isFunction(undefined)).to.be.equal(false);
+        expect(utils.isFunction([])).to.be.equal(false);
+        expect(utils.isFunction([1,2])).to.be.equal(false);
+        expect(utils.isFunction(new Date())).to.be.equal(false);
+    });
+
+    it('测试方法 ## isDate ##', function() {
+        expect(utils.isDate(new Date())).to.be.equal(true);
+        expect(utils.isDate({a:1})).to.be.equal(false);
+        expect(utils.isDate(null)).to.be.equal(false);
+        expect(utils.isDate(true)).to.be.equal(false);
+        expect(utils.isDate(false)).to.be.equal(false);
+        expect(utils.isDate('')).to.be.equal(false);
+        expect(utils.isDate(' ')).to.be.equal(false);
+        expect(utils.isDate('123')).to.be.equal(false);
+        expect(utils.isDate(123)).to.be.equal(false);
+        expect(utils.isDate(0)).to.be.equal(false);
+        expect(utils.isDate(undefined)).to.be.equal(false);
+        expect(utils.isDate([])).to.be.equal(false);
+        expect(utils.isDate([1,2])).to.be.equal(false);
+        expect(utils.isDate(function(){})).to.be.equal(false);
+    });
+
+    it('测试方法 ## isBoolean ##', function() {
+        expect(utils.isBoolean({a:1})).to.be.equal(true);
+        expect(utils.isBoolean(null)).to.be.equal(false);
+        expect(utils.isBoolean(true)).to.be.equal(true);
+        expect(utils.isBoolean(false)).to.be.equal(true);
+        expect(utils.isBoolean('')).to.be.equal(false);
+        expect(utils.isBoolean(' ')).to.be.equal(false);
+        expect(utils.isBoolean('123')).to.be.equal(false);
+        expect(utils.isBoolean(123)).to.be.equal(false);
+        expect(utils.isBoolean(0)).to.be.equal(false);
+        expect(utils.isBoolean(undefined)).to.be.equal(false);
+        expect(utils.isBoolean([])).to.be.equal(false);
+        expect(utils.isBoolean([1,2])).to.be.equal(false);
+        expect(utils.isBoolean(function(){})).to.be.equal(false);
+        expect(utils.isBoolean(new Date())).to.be.equal(false);
+    });
+});
 
 describe('测试 ## js/utils/mixins/filters.js ##', function() {
     let filters = utils.filters;
