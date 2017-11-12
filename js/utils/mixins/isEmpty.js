@@ -8,7 +8,7 @@
 function isEmpty(
     checkedValue,
     isEmptyDefaultTypesArray  = ['null', 'undefined'],
-    notEmptyDefaultTypesArray = ['function', 'date', 'boolean', 'number'],
+    notEmptyDefaultTypesArray = ['function', 'date', 'boolean', 'number']
 ) {
     // 自定义的prototype属性
     require('../../prototype/isEmpty.prototype');

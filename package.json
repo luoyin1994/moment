@@ -9,10 +9,6 @@
   "scripts": {
     "test": "mocha ./test/test.js"
   },
-  "repository": {
-    "type": "git",
-    "url": "git@192.168.36.130:moment.git"
-  },
   "author": "",
   "license": "ISC",
   "devDependencies": {

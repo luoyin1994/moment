@@ -195,7 +195,7 @@ describe('测试 ## js/utils/mixins/isType.js ##', function() {
     });
 
     it('测试方法 ## isBoolean ##', function() {
-        expect(utils.isBoolean({a:1})).to.be.equal(true);
+        expect(utils.isBoolean({a:1})).to.be.equal(false);
         expect(utils.isBoolean(null)).to.be.equal(false);
         expect(utils.isBoolean(true)).to.be.equal(true);
         expect(utils.isBoolean(false)).to.be.equal(true);
