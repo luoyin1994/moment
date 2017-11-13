@@ -237,9 +237,27 @@ describe('测试 ## js/utils/regExp/ ##',function() {
 });
 
 describe('测试 ## js/moment.js ##',function() {
-    it('测试 ## js/moment.js ##', function() {
+    it('测试 ## 传入 string 类型 ##', function() {
         const moment = require('../js/moment');
         const time   = '2017-11-06 10:23:35';
+        expect(moment(time).format('')).to.be.equal('');
+        expect(moment(time).format('YYYY')).to.be.equal('2017');
+        expect(moment(time).format('YYYY-MM')).to.be.equal('2017-11');
+        expect(moment(time).format('YYYY-MM-DD')).to.be.equal('2017-11-06');
+        expect(moment(time).format('YYYY-MM-DD HH')).to.be.equal('2017-11-06 10');
+        expect(moment(time).format('YYYY-MM-DD HH:MM')).to.be.equal('2017-11-06 10:23');
+        expect(moment(time).format('YYYY-MM-DD HH:mm')).to.be.equal('2017-11-06 10:23');
+        expect(moment(time).format('YYYY-MM-DD HH:MM:SS')).to.be.equal('2017-11-06 10:23:35');
+        expect(moment(time).format('YYYY-MM-DD HH:mm:ss')).to.be.equal('2017-11-06 10:23:35');
+        expect(moment(time).format('HH:MM:SS')).to.be.equal('10:23:35');
+        expect(moment(time).format('hh:mm:ss')).to.be.equal('10:23:35');
+        expect(moment(time).format('hh:mm')).to.be.equal('10:23');
+        expect(moment(time).format('hh')).to.be.equal('10');
+    });
+
+    it('测试 ## 传入 date 类型 ##', function() {
+        const moment = require('../js/moment');
+        const time   = new Date('2017-11-06 10:23:35');
         expect(moment(time).format('')).to.be.equal('');
         expect(moment(time).format('YYYY')).to.be.equal('2017');
         expect(moment(time).format('YYYY-MM')).to.be.equal('2017-11');
