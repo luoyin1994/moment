@@ -10,10 +10,12 @@ function isEmpty(
     isEmptyDefaultTypesArray  = ['null', 'undefined'],
     notEmptyDefaultTypesArray = ['function', 'date', 'boolean', 'number']
 ) {
-    // 自定义的prototype属性
-    require('../../prototype/isEmpty.prototype');
     const whetherValueTypeInTypesArray = require(
         './whetherValueTypeInTypesArray');
+
+    const isObject = require('./isType').isObject;
+    const isString = require('./isType').isString;
+    const isArray  = require('./isType').isArray;
 
     if (whetherValueTypeInTypesArray(checkedValue, isEmptyDefaultTypesArray)) {
         return true;
@@ -23,10 +25,20 @@ function isEmpty(
         return false;
     }
 
-    // 其他类型时
-    if (checkedValue.isEmpty) {
-        return checkedValue.isEmpty();
+    // 可以验证的类型
+    if (isObject(checkedValue)) {
+        let length = Object.keys(checkedValue).length;
+        return length === 0;
     }
+
+    if (isArray(checkedValue)) {
+        return checkedValue.length === 0;
+    }
+
+    if (isString(checkedValue)) {
+        return checkedValue.toString().trim() === '';
+    }
+
     return false;
 }
 
