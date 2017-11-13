@@ -1,16 +1,11 @@
 const isEmpty    = require('../utils/utils').isEmpty;
-const getDateStr = require('../utils/utils').getDateStr;
 const SimpleDate = require('./SimpleDate');
 const isString   = require('../utils/mixins/isType').isString;
-const isDate     = require('../utils/mixins/isType').isDate;
 
 class MyDate extends SimpleDate {
     constructor(inputDate) {
-        if (!(isDate(inputDate) || isString(inputDate))) {
-            throw 'Parameter Error: type of arguments[0] should be Date or String';
-        }
-        if (isDate(inputDate)) {
-            inputDate = getDateStr(inputDate);
+        if (!isString(inputDate)) {
+            throw 'Parameter Error: type of arguments[0] should be String';
         }
         super(inputDate);
     }

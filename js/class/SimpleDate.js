@@ -5,8 +5,7 @@ const filters   = require('../utils/utils').filters;
 class SimpleDate {
     constructor(inputDateStr) {
         if (typeof inputDateStr !== 'string') {
-            console.log('typeof dateStr must be string!');
-            return;
+            throw 'Parameter Error: type of arguments[0] should be String';
         }
 
         this.date = {

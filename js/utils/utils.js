@@ -3,6 +3,7 @@ const regExpStr   = {
     typeStr: require('./regExp/typeStr.regExp'),
     timeStr: require('./regExp/timeStr.regExp'),
     dateStr: require('./regExp/dateStr.regExp'),
+    allowedInputStringFormat: require('./regExp/allowedInputStringFormat.regExp'),
 };
 exports.regExpStr = regExpStr;
 

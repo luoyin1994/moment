@@ -1,3 +1,2 @@
-let timeStr   = /\:/;
-module.exports = timeStr;
+module.exports = /\:/;
 

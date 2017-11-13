@@ -1,2 +1,1 @@
-let dateStr   = /\-/;
-module.exports = dateStr;
+module.exports = /[-/.]/;

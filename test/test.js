@@ -229,10 +229,51 @@ describe('测试 ## js/utils/mixins/filters.js ##', function() {
 });
 
 describe('测试 ## js/utils/regExp/ ##',function() {
+    const regExpStr = utils.regExpStr;
     it('测试 ## typeStr.regExp.js ##', function() {
-        const typeStr = utils.regExpStr.typeStr;
-        expect(typeStr.exec('[object String]')[1]).to.be.equal('String');
-        expect(typeStr.exec('[object Number]')[1]).to.be.equal('Number');
+        expect(regExpStr.typeStr.exec('[object String]')[1]).to.be.equal('String');
+        expect(regExpStr.typeStr.exec('[object Number]')[1]).to.be.equal('Number');
+    });
+
+    it('测试 ## allowedInputStringFormat.regExp.js ##', function() {
+        expect(regExpStr.allowedInputStringFormat.test('YYYY-MM-DD HH:MM:SS')).to.be.equal(true);
+        expect(regExpStr.allowedInputStringFormat.test('yyyy-mm-dd hh:mm:ss')).to.be.equal(true);
+        expect(regExpStr.allowedInputStringFormat.test('YYYY-mm-DD HH:MM:ss')).to.be.equal(true);
+        expect(regExpStr.allowedInputStringFormat.test('YyYy-mM-Dd hH:mM:SS')).to.be.equal(true);
+        expect(regExpStr.allowedInputStringFormat.test('YYYY/MM/DD HH:MM:SS')).to.be.equal(true);
+        expect(regExpStr.allowedInputStringFormat.test('YYyY/MM/dD HH:mM:SS')).to.be.equal(true);
+        expect(regExpStr.allowedInputStringFormat.test('YYYY/MM-DD HH:MM:SS')).to.be.equal(true);
+        expect(regExpStr.allowedInputStringFormat.test('YYyY/Mm-DD HH:MM:SS')).to.be.equal(true);
+        expect(regExpStr.allowedInputStringFormat.test('YYyY.Mm-DD HH:MM:SS')).to.be.equal(true);
+        expect(regExpStr.allowedInputStringFormat.test('YYyY.Mm.DD HH:MM:SS')).to.be.equal(true);
+        expect(regExpStr.allowedInputStringFormat.test('YYyY.Mm.dD HH:mM:SS')).to.be.equal(true);
+        expect(regExpStr.allowedInputStringFormat.test('YYyYy.Mm.dD HH:mM:SS')).to.be.equal(false);
+        expect(regExpStr.allowedInputStringFormat.test('YYyYy.dd.dD HH:mM:SS')).to.be.equal(false);
+        expect(regExpStr.allowedInputStringFormat.test('YYyYy.ddd.dD HH:mM:SS')).to.be.equal(false);
+        expect(regExpStr.allowedInputStringFormat.test('YYyYy.mmm.dDd HH:mM:SS')).to.be.equal(false);
+        expect(regExpStr.allowedInputStringFormat.test('YYyYy.mm.dDd HH:mM:SS')).to.be.equal(false);
+        expect(regExpStr.allowedInputStringFormat.test('YYyYy.mm.dd HHh:mM:SS')).to.be.equal(false);
+        expect(regExpStr.allowedInputStringFormat.test('YYyYy.mm.dd Hh:mmM:SS')).to.be.equal(false);
+        expect(regExpStr.allowedInputStringFormat.test('YYyYy/mm/dd Hh:mmM:SS')).to.be.equal(false);
+        expect(regExpStr.allowedInputStringFormat.test('YYyYy-mm-dd Hh:mmM:SS')).to.be.equal(false);
+    });
+
+    it('测试 ## dateStr.regExp.js ##', function() {
+        expect(regExpStr.dateStr.test('2012.10.17')).to.be.equal(true);
+        expect(regExpStr.dateStr.test('2012.10')).to.be.equal(true);
+        expect(regExpStr.dateStr.test('2012/10/17')).to.be.equal(true);
+        expect(regExpStr.dateStr.test('2012/10')).to.be.equal(true);
+        expect(regExpStr.dateStr.test('2012-10-17')).to.be.equal(true);
+        expect(regExpStr.dateStr.test('2012-10')).to.be.equal(true);
+        expect(regExpStr.dateStr.test('201210')).to.be.equal(false);
+        expect(regExpStr.dateStr.test('2012*10')).to.be.equal(false);
+    });
+
+    it('测试 ## timeStr.regExp.js ##', function() {
+        expect(regExpStr.timeStr.test('12:56:33')).to.be.equal(true);
+        expect(regExpStr.timeStr.test('12:56')).to.be.equal(true);
+        expect(regExpStr.timeStr.test('12/56')).to.be.equal(false);
+        expect(regExpStr.timeStr.test('12*56')).to.be.equal(false);
     });
 });
 
@@ -253,6 +294,7 @@ describe('测试 ## js/moment.js ##',function() {
         expect(moment(time).format('hh:mm:ss')).to.be.equal('10:23:35');
         expect(moment(time).format('hh:mm')).to.be.equal('10:23');
         expect(moment(time).format('hh')).to.be.equal('10');
+        expect(moment(time, 'YYYY-MM-DD HH:MM:SS').format()).to.be.equal('2017-11-06 10:23:35');
     });
 
     it('测试 ## 传入 date 类型 ##', function() {

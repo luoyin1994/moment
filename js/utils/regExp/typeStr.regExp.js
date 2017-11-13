@@ -1,2 +1,1 @@
-let typeStr   = /^\[object (\w+)\]$/;
-module.exports = typeStr;
+module.exports = /^\[object (\w+)\]$/;
