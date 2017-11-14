@@ -1,5 +1,5 @@
 {
-  "name": "moment",
+  "name": "simple-moment",
   "version": "1.0.0",
   "description": "",
   "main": "main.js",
@@ -9,9 +9,17 @@
   "scripts": {
     "test": "mocha ./test/test.js"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/luoyin1994/moment.git"
+  },
   "author": "",
   "license": "ISC",
-  "devDependencies": {
+  "bugs": {
+    "url": "https://github.com/luoyin1994/moment/issues"
+  },
+  "homepage": "https://github.com/luoyin1994/moment#readme",
+  "dependencies": {
     "chai": "^4.1.2",
     "mocha": "^4.0.1"
   }
