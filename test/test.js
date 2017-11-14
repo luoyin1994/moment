@@ -2,14 +2,6 @@ const expect = require('chai').expect;
 
 const utils = require('../js/utils/utils');
 
-describe('测试 ## js/prototype/ ##',function() {
-    it('测试 ## isEmpty.prototype.js ##', function() {
-        require('../js/prototype/isEmpty.prototype');
-        expect(''.isEmpty()).to.be.equal(true);
-        expect('   '.isEmpty()).to.be.equal(true);
-        expect('123'.isEmpty()).to.be.equal(false);
-    });
-});
 
 describe('测试 ## js/utils/mixins/ ##', function() {
     it('测试 ## _typeof.js ##', function() {
