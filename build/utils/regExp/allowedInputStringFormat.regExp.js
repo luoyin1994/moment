@@ -1,0 +1,1 @@
+"use strict";module.exports=/^[yY]{4}[-/.][mM]{2}[-/.][dD]{2} [hH]{2}:[mM]{2}:[sS]{2}$/;

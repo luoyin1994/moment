@@ -1,11 +1,12 @@
-const expect = require('chai').expect;
+var expect = require('chai').expect;
 
-const utils = require('../js/utils/utils');
+var utils = require('../build/utils/utils');
+var moment = require('../build/moment');
 
 
 describe('测试 ## js/utils/mixins/ ##', function() {
     it('测试 ## _typeof.js ##', function() {
-        const _typeof = utils._typeof;
+        var _typeof = utils._typeof;
         expect(_typeof(undefined)).to.be.equal('undefined');
         expect(_typeof(null)).to.be.equal('null');
         expect(_typeof('123')).to.be.equal('string');
@@ -17,12 +18,12 @@ describe('测试 ## js/utils/mixins/ ##', function() {
         expect(_typeof(new Date)).to.be.equal('date');
     });
     it('测试 ## getDateStr.js ##', function() {
-        const getDateStr = utils.getDateStr;
-        const time   = '2017-11-06 10:23:35';
+        var getDateStr = utils.getDateStr;
+        var time   = '2017-11-06 10:23:35';
         expect(getDateStr(new Date(time))).to.be.equal('2017-11-06 10:23:35');
     });
     it('测试 ## isEmpty.js ##', function() {
-        const isEmpty = utils.isEmpty;
+        var isEmpty = utils.isEmpty;
         expect(isEmpty('')).to.be.equal(true);
         expect(isEmpty(' ')).to.be.equal(true);
         expect(isEmpty('123')).to.be.equal(false);
@@ -39,7 +40,7 @@ describe('测试 ## js/utils/mixins/ ##', function() {
         expect(isEmpty(new Date())).to.be.equal(false);
     });
     it('测试 ## whetherValueTypeInTypesArray.js ##', function() {
-        const whetherValueTypeInTypesArray = utils.whetherValueTypeInTypesArray;
+        var whetherValueTypeInTypesArray = utils.whetherValueTypeInTypesArray;
         expect(whetherValueTypeInTypesArray(134, ['number', 'string'])).to.be.equal(true);
         expect(whetherValueTypeInTypesArray('', ['number', 'string'])).to.be.equal(true);
         expect(whetherValueTypeInTypesArray(undefined, ['number', 'string'])).to.be.equal(false);
@@ -205,9 +206,9 @@ describe('测试 ## js/utils/mixins/isType.js ##', function() {
 });
 
 describe('测试 ## js/utils/mixins/filters.js ##', function() {
-    let filters = utils.filters;
+    var filters = utils.filters;
     it('测试方法 ## prefix_0 ##', function() {
-        const prefix_0 = filters.prefix_0;
+        var prefix_0 = filters.prefix_0;
         expect(prefix_0('7', 4)).to.be.equal('0007');
         expect(prefix_0('07', 4)).to.be.equal('0007');
         expect(prefix_0('007', 4)).to.be.equal('0007');
@@ -221,7 +222,7 @@ describe('测试 ## js/utils/mixins/filters.js ##', function() {
 });
 
 describe('测试 ## js/utils/regExp/ ##',function() {
-    const regExpStr = utils.regExpStr;
+    var regExpStr = utils.regExpStr;
     it('测试 ## typeStr.regExp.js ##', function() {
         expect(regExpStr.typeStr.exec('[object String]')[1]).to.be.equal('String');
         expect(regExpStr.typeStr.exec('[object Number]')[1]).to.be.equal('Number');
@@ -271,8 +272,7 @@ describe('测试 ## js/utils/regExp/ ##',function() {
 
 describe('测试 ## js/moment.js ##',function() {
     it('测试 ## 传入 string 类型 ##', function() {
-        const moment = require('../js/moment');
-        const time   = '2017-11-06 10:23:35';
+        var time   = '2017-11-06 10:23:35';
         expect(moment(time).format('')).to.be.equal('');
         expect(moment(time).format('YYYY')).to.be.equal('2017');
         expect(moment(time).format('YYYY-MM')).to.be.equal('2017-11');
@@ -290,8 +290,7 @@ describe('测试 ## js/moment.js ##',function() {
     });
 
     it('测试 ## 传入 date 类型 ##', function() {
-        const moment = require('../js/moment');
-        const time   = new Date('2017-11-06 10:23:35');
+        var time   = new Date('2017-11-06 10:23:35');
         expect(moment(time).format('')).to.be.equal('');
         expect(moment(time).format('YYYY')).to.be.equal('2017');
         expect(moment(time).format('YYYY-MM')).to.be.equal('2017-11');
@@ -309,12 +308,12 @@ describe('测试 ## js/moment.js ##',function() {
 });
 
 describe('测试 ## main.js ##',function() {
-    const moment = require('../main');
-    const time   = '2017-11-06 10:23:35';
-    const timeToYYYYMMDDHHmm = (time) => {
+    var moment = require('../main');
+    var time   = '2017-11-06 10:23:35';
+    var timeToYYYYMMDDHHmm = (time) => {
         return moment(time, 'YYYY-MM-DD HH:mm:ss').format('YYYY-MM-DD HH:mm');
     };
-    const timeToYYYYMMDD     = (time) => {
+    var timeToYYYYMMDD     = (time) => {
         return moment(time, 'YYYY-MM-DD HH:mm:ss').format('YYYY-MM-DD');
     };
     it('测试 ## timeToYYYYMMDDHHmm 方法 ##', function() {

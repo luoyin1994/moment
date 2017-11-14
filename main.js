@@ -1,4 +1,4 @@
-module.exports = require('./js/moment');
+module.exports = require('./build/moment');
 
 
 

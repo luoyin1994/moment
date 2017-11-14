@@ -1,13 +1,14 @@
 {
   "name": "simple-moment",
-  "version": "3.0.0",
+  "version": "3.0.1",
   "description": "",
   "main": "main.js",
   "directories": {
     "test": "test"
   },
   "scripts": {
-    "test": "mocha ./test/test.js"
+    "test": "mocha ./test/test.js",
+    "build": "gulp"
   },
   "repository": {
     "type": "git",
@@ -20,7 +21,12 @@
   },
   "homepage": "https://github.com/luoyin1994/moment#readme",
   "devDependencies": {
+    "babel-core": "^6.26.0",
+    "babel-preset-env": "^1.6.1",
     "chai": "^4.1.2",
+    "gulp": "^3.9.1",
+    "gulp-babel": "^7.0.0",
+    "gulp-uglify": "^3.0.0",
     "mocha": "^4.0.1"
   }
 }

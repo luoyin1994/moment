@@ -1,0 +1,1 @@
+"use strict";function whetherValueTypeInTypesArray(e,r){var t=require("./_typeof");return void 0!==r.find(function(r){return t(e)===r})}module.exports=whetherValueTypeInTypesArray;

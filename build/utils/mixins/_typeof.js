@@ -1,0 +1,1 @@
+"use strict";function _typeof(e){var t=Object.prototype.toString.apply(e);return t=typeStrRegExp.exec(t)[1].toLowerCase()}var typeStrRegExp=require("../regExp/typeStr.regExp");module.exports=_typeof;
